@@ -1,0 +1,119 @@
+@charset 'utf-8';/*����css���뷽ʽ*/
+
+body,h2,p{
+			margin:0;
+			}
+/*1.�ⲿ��������ʽ*/
+#container{
+	width:990px;
+	margin:0 auto;
+}
+/*2.ҳ�����*/
+h2{
+	font-weight:normal;
+	color:#999;
+	border-bottom:1px solid #ccc;
+	padding-bottom:20px;
+	margin:20px auto;
+	}
+/*ҳ������*/
+.left{
+	float:left;
+	position:relative;
+} 
+.left a{
+	position:absolute;
+	width:153px;
+	height:48px;
+	text-align:center;
+	line-height:48px;
+	text-decoration:none;
+	border:1px solid #64a131;
+	border-radius:5px;
+	color:#64a131;
+	bottom:20px;
+	left:176px;
+}
+
+
+
+
+.right{
+		float:right;
+		margin-top:70px;
+		margin-right:47px;
+
+		} 
+
+.form-line>p{
+	float:left;
+	width:64px;
+	height:40px;
+	text-align:right;
+	line-height:40px;
+	color:#a8a6a4;
+	margin-right:30px;
+
+}
+.form-control{
+	box-sizing:border-box;
+	width:300px;
+	height:40px;
+	border:1px solid #ccc;
+	outline:none;
+	font-size:16px;
+	padding-left:10px;
+
+}
+/*��֮��ı߾�*/
+.form-line{
+	margin-bottom:30px;
+
+}
+.isSave{color:#999;}
+
+.isSave>p{
+	float:right;
+
+}
+
+.isSave>input{
+	width:18px;
+	height:18px;
+	vertical-align:middle;
+}
+
+.isSave a{
+	color:#999;
+}
+/*������*/
+.btn{
+	width:145px;
+	height:40px;
+	text-align:center;
+	line-height:40px;
+	border:1px solid #64a131;
+	background:#64a131;
+	color:white;
+	border-radius:5px;
+	font-size:18px;
+
+}
+
+.registBtn{
+	display:inline-block;
+	background:white;
+	color:#64a131;
+	margin-left:10px;
+
+}
+
+
+
+
+
+
+
+
+
+

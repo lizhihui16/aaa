@@ -1,0 +1,130 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+许海越
+xuhy@tedu.cn
+
+
+完成项目的人员
+用户
+
+需求分析师（分析用户需求）
+产品经理（设计产品原型）
+UI设计师（设计项目显示效果）
+前端工程师（开发前端代码）
+后端工程师（开发后端代码）
+测试工程师（测试项目功能流程）
+运维工程师（部署项目上线）
+
+架构师（决定项目主体框架）
+项目经理（负责整体项目进程节点把控项目）
+
+了解项目
+了解项目流程
+了解项目功能
+判断可行性
+通过UI图分析功能
+判断可行性
+确定大体实现方法
+
+前后端分离
+
+设计表
+看页面>设计表>写前端页面>url>views>完成
+看页面>写前端页面>views>url>写前端页面>完成
+
+项目：天天果园fruitday
+
+功能点：
+登录
+注册
+首页展示
+商品详情
+购物车
+订单管理
+个人中心
+地址管理
+商品列表
+搜索
+
+对数据库操作：
+登录（查询用户）
+注册（添加用户，查询用户）
+首页展示（查询数据）
+商品详情（查询数据）
+购物车（增删改查）
+订单管理（增删查）
+个人中心（查询数据）
+地址管理（增删改查）
+商品列表（查询数据）
+
+数据库：
+用户表
+地址表
+商品分类表
+商品表
+购物车表
+订单表
+
+设计表：
+1 用户表
+2 地址表（用户表 一对多）
+3 商品分类表
+4 商品表（商品分类表 一对多）
+5 购物车表（商品表 一对多 用户表 一对多）
+用户表和购物车一对一 购物车和商品多对多
+6 订单表（用户表 一对多）
+
+用户表(id, uname用户名, upassword密码,
+email邮箱, isban禁用)
+地址表(id, user（F）用户, aname姓名, 
+address收站点, phone手机号)
+商品分类表(id, title名称, desc描述, 
+picture图片, isdelete是否删除)
+商品表(id, title名称, price商品价格, 
+unit单位, desc描述, detail商品详情, 
+picture图片, isdelete是否删除, type分类)
+购物车表(id, user用户, good商品, 
+ccount数量)
+订单表(id, user用户, orderNo订单号, 
+ads收件人, acot总数, acount价格, 
+cals订单详情, orderStatus订单状态)
+
+模块(app)
+userinfo(用户)
+memberapp(商品)
+cartinfo(购物车 订单)
+
+django-admin startproject fruitday
+python3 manage.py startapp userinfo
+python3 manage.py startapp memberapp
+python3 manage.py startapp cartinfo
+
+pip install Pillow
+
+
+
+开发人员架构
+项目流程、功能
+设计数据库表
+注册 make_password
+登录 check_password session
+注销 session
+首页展示 random get_object_or_404
+详情页 get_absolute_url
+购物车 ajax
+
+

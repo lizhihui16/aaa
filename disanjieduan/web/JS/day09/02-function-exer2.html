@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+	<script>
+	  function isRun(year){
+		var res = year%4==0&& year%100!=0 || year%400==0;
+		return res;
+	  }
+	
+	//2.主函数
+	function caculateDate(){
+		var year=Number(prompt('年'));
+		var month=Number(prompt('月'));
+		var day=Number(prompt('日'));
+		var sum=0;
+		for(var i=1990;i<year;i++){
+			sum+=365;
+			if(isRun(i)){
+				sum+=1;
+			}
+		}
+		
+		for(var m=1;m<month;m++){
+			switch(m){
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+					sum+=31;
+					break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:		
+					sum+=30;
+					break;
+				case 2:
+					sum+=28;
+					if(isRun(year)){
+					sum+=1;
+					break;
+					};
+			}
+		
+		}
+		sum+=day;
+		var week=sum%7;
+		switch(week){
+			case 0:
+				console.log(7);
+				break;
+			case 1:
+				console.log(1);
+				break;
+			case 2:
+				console.log(2);
+				break;
+			case 3:
+				console.log(3);
+				break;
+			case 4:
+				console.log(4);
+				break;
+			case 5:
+				console.log(5);
+				break;
+			case 6:
+				console.log(6);
+				break;
+		
+		}
+		
+	
+	}
+
+	</script>
+
+
+ </head>
+ <body>
+  <button onclick='caculateDate();'>点击计算日期</button>
+ </body>
+</html>

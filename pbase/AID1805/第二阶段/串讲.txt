@@ -1,0 +1,40 @@
+字符串的方法 split&jion
+mysql&mongo区别
+mysql是关系型数据库，mongo是非关系型数据库
+mysql是有数据库、表、记录构成，mongo由数据库、集合文档构成
+mysql优缺点：sql语句成熟，数据一致性高，技术成熟，可以使用外键关联，
+    支持事务(innoDB,MYISAM不支持数据库级外键和事务)。
+    海量操作时，数据库性能有所下降。
+mongoDB优缺点：弱化了数据结构，高并发情况下读写能力强，操作过于冗长，容易混乱
+
+本地操作mysql
+登录：mysql -uroot -p123456
+创建或选择数据库：create database 库名;/use 库名;
+创建表:create table 表名(id int primary key auto_increament,name char(20)) ENGINE=innodb default charset=utf8;
+insert into 表名 values(),...,();
+select * from 表名 where ...
+update 表名 set ... where ...
+delete from 表名 where ...
+
+程序操作mysql
+import pymysql / from pymysql import *
+conn = [pymysql.]connect("localhost","root","123456","库名")
+cur = conn.cursor()
+cur.excute(sql语句)
+data=cur.fetchall()
+
+本地操作mongo
+登录：mongo
+选择/创建数据库：use 库名
+创建表：db.createCollection("表名")
+db.表名.insert() 多条数据需要放到列表里。
+db.表名.find(query,feild).pretty()
+db.表名.update(query,update,upsert,multi)
+
+程序操作mongo
+from pymongo import MongoClient
+conn = MongoClient()
+db = conn.库名
+db.表名.find(query,feild)
+db.表名.insert()
+db.表名.update(query,updata,upsert=False,multi=False)

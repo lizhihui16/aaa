@@ -1,0 +1,14 @@
+晨练
+1.什么是session及其使用场合
+2.Django中使用session
+	1.如何设置 session 的值
+	2.如何获取session的值
+	3.如何删除session的值
+3.在 settings.py中,有关session的设置
+	1.SESSION_COOKIE_AGE
+		作用:设置sessionID在 cookies 中的保存时长
+		ex:SESSION_COOKIE_AGE=60*60*24
+	2.SESSION_EXPIRE_AT_BROWSER_CLOSE
+		作用:设置关闭浏览器时则清除服务器上对应的session空间
+		ex:SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+4.自行查询有关sessionID的有关内容。

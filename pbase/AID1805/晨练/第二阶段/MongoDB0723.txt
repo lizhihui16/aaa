@@ -1,0 +1,9 @@
+
+练习：
+1. 查询集合post中的信息，只显示title，隐藏_id和price
+
+2. 查询集合post中price>100的信息，隐藏_id，显示title和price，并把得到的结果按照price升序排列，显示前两条信息
+
+3. 查询集合post中的信息，只显示前3行的信息
+
+4. 查询food集合中，既包含apple又包含banana的文档有哪些？隐藏_id显示

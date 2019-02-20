@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+  
+	var a=Number(prompt('年'));
+	var b=Number(prompt('月'));
+	var c=Number(prompt('日'));
+	var sum=0;
+	var isRun =  a%4==0&&a%100!=0||a%400==0;
+	//正月累加 最多取到11个正月
+	var i=1;
+	while(i<b){//i取1~b-1
+		switch(i){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+				sum+=31;
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				sum+=30;
+				break;
+			case 2:
+				sum+=28;
+				if(isRun)
+				sum+=1;
+				break;
+		}
+		i++
+	}
+	sum+=c;
+	console.log(sum);
+  
+  </script>
+ </body>
+</html>

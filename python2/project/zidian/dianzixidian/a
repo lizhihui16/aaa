@@ -1,0 +1,121 @@
+电子词典
+    功能：
+        １、用户可以登录和注册
+            登录凭借用户名和密码登录
+            注册要求用户必须填写用户名密码，其他内容自己拟定
+            用户名要求不能重复
+        
+        ２、用户信息需要长期保存，以满足随时登录
+            要求使用数据库保存
+        
+        ３、能够满足多个用户同时登录操作的需要
+
+        ４、项目分为客户端和服务器，客户端负责请求和展示数据，其余处理有服务器完成
+
+        ５、客户端启动即进入一级界面（界面print打印），一级界面功能
+            登录　　注册　　退出
+
+        ６、用户登录后即进入二级界面（注册后是否处于登录状态自定），二级界面功能
+            查看单词　查看历史记录　注销
+            查单词：可以循环输入单词，获取单词解释
+                    每个单词占一行
+                    单词按照顺序排列
+                    单词和解释之间一定有空格
+                可以选择直接操作文本，或者将单词本导入数据库然后从数据库查找
+            查看历史记录：
+                    格式：name  word  time 
+                    可以显示登录人员的所有单词或者最近１０条自定
+            注销：返回一级界面
+    
+    １、确定技术点
+        用什么并发？　　fork 多进程
+        用什么套接字？  tcp套接字
+        用什么数据库？  mysql
+        文件处理还是数据库查询？    
+
+    ２、建立数据库，设计表
+        入需要将单词本导入数据库，则编程完成导入
+        用户表：id  name   passwd
+        历史记录：　id  name  word  time
+        单词表：id  word    interpret(解释)
+
+        create table user (id int primary key auto_increment,name varchar(32)
+        not null,passwd varchar(16) default '000000');
+
+        create table hist(id int primary key auto_increment,name varchar(32) not null,
+        word varchar(32) not null,time varchar(64));
+
+        create table words (id int primary key auto_increment,
+        word varchar(32),interpret text);
+
+    ３、结构设计，仿照ftp文件服务器
+        服务器：创建套接字－－》创建父子进程－－》子进程等待处理客户端请求－－》父进程继续等待连接下一个客户端
+            　具体请求调用具体函数处理
+
+        客户端：创建套接字－－》发起连接请求－－》进入一级界面－－》发起请求（登录，注册，退出）－－》登录成功进入二级界面
+            　　－－》请求（查询，历史记录）
+
+    ４、完成通信的搭建
+
+    ５、功能分析，根据分析完成功能代码
+        
+        注册
+            客户端：
+                １、输入注册信息
+                ２、将信息发送给服务器
+                ３、得到服务器反馈
+
+            服务端：　
+                １、接收请求
+                ２、判断是否允许注册
+                ３、将结果反馈给客户端
+                ４、将注册信息插入数据库
+
+        登录
+            客户端：
+                １、输入用户名密码
+                ２、将信息发送给服务端
+                ３、得到服务端反馈
+                ４、进入二级界面
+            服务端：　
+                １、接收请求
+                ２、判断是否允许登录
+                ３、反馈结果
+
+        查词
+            客户端：
+                １、发送请求　Q name word
+                ２、接收返回结果
+                ３、＃＃表示退出查词
+            服务端：　
+                １、接收请求
+                ２、查找单词，反馈结果
+                ３、插入历史记录
+                
+        历史记录
+            客户端：
+                １、发送请求　S　name 
+                ２、接收返回结果
+            服务端：　
+                １、接收请求
+                ２、查找历史记录，反馈结果
+
+cookie
+    import getpass
+        passwd = getpass.getpass()
+            功能：隐藏密码输入
+
+pip的使用
+    作用：安装python的标准第三方库
+    安装：sudo apt -get install python3-pip 
+
+    常用命令：
+        安装包: sudo pip3 install [package]
+        查看python包　pip3 list
+        搜索python包 pip3 search [package]
+        升级软件包 sudo　pip3 install --upgrade [package]
+        查看软件包信息 sudo pip3 show [package]
+        卸载软件包 pip3 uninstall [package]
+        导出软件环境　pip3 freeze > requirements.txt
+        安装软件环境 pip3 install -r requirements.txt 
+        

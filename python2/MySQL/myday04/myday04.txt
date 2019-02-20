@@ -1,0 +1,243 @@
+1、锁(mysql自动加锁和释放锁)
+  1、目的 ：解决客户端的并发访问的冲突问题
+  2、锁的分类
+    1、锁类型
+      读锁(select)共享锁 ：加读锁后其他用户只能查询,不能修改
+      写锁(增删改)互斥锁、排他锁 ：其他用户不能做任何操作
+    2、锁粒度
+      表级锁 ：加读锁或者写锁
+      行级锁 ：加读锁或者写锁
+
+２、存储引擎（处理标的处理器）
+   1、基本操作
+    1、查看所有存储引擎
+      show engines;
+    2、查看表存储引擎
+      show create table 表名;
+    3、指定存储引擎
+      create table 表名(...)engine=innodb,character set utf8;
+    4、修改表存储引擎
+      alter table 表名 engine=myisam;
+    5、工作中常用
+      InnoDB  MyISAM
+  2、修改表默认存储引擎
+    1、sudo -i
+    2、cd /etc/mysql/mysql.conf.d/
+    3、cp mysqld.cnf mysqld.cnf.bak
+    4、vi mysqld.cnf
+       [mysqld]
+       default-storage-engine=myisam
+    5、/etc/init.d/mysql restart
+
+    ３、存储引擎特点
+    １、InnoDB特点
+        1、共享表空间
+        表名.frm 表结构和索引信息
+        表名.ibd 表记录
+        2、支持行级锁　外键、事务
+    　２、MyISAM特点
+        1、独享表空间
+        表名.frm 表结构 
+        表名.myd 表记录
+        表名.myi 索引文件
+        2、支持表级锁
+    ３、memory
+        表结构存储在硬盘里,表记录存储在内存中
+        表名.frm
+        服务重启后表结构还在,表记录都消失
+    4、如何决定表使用什么存储引擎
+        1、主要用来查询的表用MyISAM
+        2、写操作多的表用InnoDB
+３、数据备份(mysqldump,在Linux终端中操作)
+  1、命令格式
+    mysqldump -u用户名 -p 源库名 > 路径/XXX.sql
+  2、源库名的表示方式
+    --all-databases   备份所有库
+    库名              备份单个库
+    -B 库1 库2 ...    备份多个库
+    库名 表1 表2 ...  备份指定表
+  3、练习
+    1、备份所有库为 all.sql , /home/tarena/mydata/
+      mysqldump -uroot -p --all-databases > all.sql
+    2、备份dt1库中 sheng、city、xian三张表 scx.sql
+      mysqldump -uroot -p dt1 sheng city xian > scx.sql
+    3、备份MOSHOU库和dt1库,md.sql
+      mysqldump -uroot -p -B MOSHOU dt1 > md.sql
+    4、备份dt1库，dt1.sql
+      mysqldump -uroot -p dt1 >dt1.sql
+４、数据恢复
+  1、命令格式
+    mysql -u用户名 -p 目标库名 < xxx.sql
+    如何要恢复的库不存在则必须先创建空库
+  2、示例
+    1、删除dt1库，创建空库，从all.sql中恢复此库
+        mysql> drop database dt1;
+        mysql>create database dt1 character set utf8;
+        use dt1;
+        mysql -uroot -p --one-database dt1<all.sql
+
+    ２、在MOSHOU库中：
+      1、新建一张表 t888 (id)
+      create table t888(id int);
+      insert into t888 values(1),(2),(3);
+      2、sheng表中新增一条记录 : 台湾
+      insert into sheng values(11,200003,'日本省');
+    ３、注意
+      1、恢复库时,原库中表中记录会被覆盖,新增的表不会删除
+      2、恢复时，如果要恢复的库不存在，则先创建空库
+５、数据导入
+	1、把文件系统内容导入到数据的表中
+	2、命令格式
+		load data infile "文件名"
+		into table 表名
+		fileds terminated by "分隔符"
+		lines terminated by "\n"
+    ３、导入步骤
+        １、在数据库创建对应的表
+            create table score(
+            id int,
+            name varchar(20),
+            score float(5,2),
+            phnumber char(11),
+            calss char(7)
+            )charset=utf8
+        ２、把文件拷贝到数据库的搜索路径中
+            1、查看搜索路径方法
+				show variables like "secure_file_priv";
+            2、执行复制命令
+				sudo cp /home/tarena/scoreTable.csv /var/lib/mysql-files/
+        ３、执行数据导入语句
+            load data infile "/var/lib/mysql-files/scoreTable.csv"
+            into table score
+            fields terminated by ","
+            lines terminated by "\n";
+
+			注意：
+				1、库、表必须都为utf8编码
+				2、路径必须写绝对路径 /var/lib/mysql-files/..."
+    4、文件权限问题
+        -rwxr--r-- root root scoreTable.csv
+        rwx ：所有者对此文件权限
+        --- ：所属组其他用户对此文件权限
+        rw- ：其他组的用户对此文件权限
+        root ：所有者    
+        root ：所属组
+        
+        1、修改文件权限
+            chmod 777 文件名
+            chmod 666 文件名
+            chmod 644 文件名
+            chmod +rw scoretable.csv
+            chmod 666 scoretable.csv
+            r:4
+            w:2
+            x:1
+        步骤：
+            1、sudo -i
+            2、cd /var/lib/mysql-files
+            3、chmod 666 scoretable.csv
+	５、excel文件转为csv文件
+		打开excel表格 -> 文件 -> 另存为 -> *.csv(逗号分隔)
+	６、更改一个文件的字符编码
+		用 记事本/编辑器 打开,文件 -> 另存为 -> 选择编码
+６、数据导出
+	1、将数据库中表记录保存到系统文件里
+	2、语法格式
+		select ... from 表名 where 条件
+		into outfile "文件名"
+		fields terminated by "分隔符"
+		lines terminated by "\n"
+	3、示例
+		1、把sanguo表中的姓名、攻击值、国家三个字段导出到文件 sanguo.csv中
+            select name,gongji,country from MOSHOU.sanguo
+            into outfile "/var/lib/mysql-files/sanguo.csv"
+            fields terminated by ","
+            lines terminated by "\n";
+
+            system sudo -i
+            cd /var/lib/mysql-files/
+            ls
+            cat sanguo.csv
+
+		2、把mysql库下的user表中 user、host两个字段的值导出到 user.txt中,字段之间用 三个空格 去分隔
+			select user,host from mysql.user
+			into outfile "/var/lib/mysql-files/user.txt"
+			fields terminated by "   "
+			lines terminated by "\n";
+	4、注意
+		1、导出的内容完全由SQL查询语句决定
+	、路径必须指定为数据库搜索的绝对路径
+
+７、E-R模型(Entry-Relationship)
+  1、定义
+    实体-关系模型,数据模型，用于数据库设计
+  2、三个概念
+    1、实体 ：描述客观事物的概念
+      1.表示方法：矩形框
+      2.一个人、一本书、一杯咖啡
+    2、属性 ：实体具有的特性
+    　表示方法：椭圆形
+    3、关系 ：实体之间的关系
+      1、一对一关系(1:1) ：老公对老婆
+        Ａ中１个实体，在Ｂ中只能有１个与其关联
+        Ｂ中１个实体，在Ａ中只能有１个与其关联
+      2、一对多关系(1:n) ：父亲对孩子
+      　Ａ中１个实体，在Ｂ中有n个与其关联
+        Ｂ中１个实体，在Ａ中只能有１个与其关联
+      3、多对多关系(m:n) ：兄弟姐妹对兄弟姐妹
+        Ａ中１个实体，在Ｂ中有n个与其关联
+        Ｂ中１个实体，在Ａ中有n个与其关联
+  3、ER图绘制
+    １、矩形框代表实体，菱形框代表关系，椭圆框代表属性
+    ２、示例（老师与课程）
+    　　老师：员工号、姓名、职称
+    　　课题：课题号、课题名
+    　　关系：m:n 
+    3、设计１个学生选课系统的ＥＲ图
+    　实体：学生、课程、老师
+    　学生：学号、姓名
+    　课程：课程编号、课程名称
+    　老师：员工号、姓名
+    　关系：老师－教－学生　m:n
+           学生－选－课程　m:n
+８、mysql用户管理
+　　１、开启远程连接
+    　1.sudo -i
+      2.cd /etc/mysql/mysql.conf.d/
+      3.subl mysqld.cnf
+        bind-address=127.0.0.1
+      4./etc/init.d/mysql restart
+    2、添加授权用户
+    　１、用root用户登录mysql
+        mysql -uroot -p123456
+    　2、授权
+        grant 权限列表　on 库.表　to '用户名'@'%'
+        identified by '密码'
+        with grant option
+
+        权限列表：　all privileges 、select、drop
+        库．表　：　库．*　、　*.*(所有库所有表)
+    示例：1.添加授权用户tiger,对dt1库有所有权限，密码１２３
+          grant all privileges on dt1.* to 'tiger'@'%'
+          identified by '123'
+          with grant option;
+
+作业:
+    1.把/etc/passwd 导入到数据表　userinfo
+    
+    2.在userinfo表的第一列添加１个id 字段，主键，自增长，显示
+    宽度为３，位数不够用０填充
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,222 @@
+上期回顾
+用户
+需求分析师
+产品经理
+UI设计师
+前端工程师
+后端工程师
+测试工程师
+运维工程师
+项目经理
+架构师
+
+***********************************
+前后端分离
+API接口
+***********************************
+
+项目流程
+了解项目
+了解项目流程
+了解项目功能
+判断可行性
+通过UI设计图分析功能
+确定大体实现方案
+设计表
+
+本期
+二手车交易系统
+项目简介
+进入21世纪以来，随着国家经济的飞速发展，国民生活水平的不断提高，人们对于生活质量有了更高的需求，汽车对于一个家庭来说可以提供更多的生活上的便利，提高生活水平，满足日常家庭出行需求，公司办公需要等，所以中国汽车保有量逐年呈增长趋势，销量有大幅增长。随着汽车数量的不断增长，随之而来的是汽车相关产业井喷式的发展，汽车配件、维修、二手车交易等相关产业觉醒，带来了庞大的需求团体，基于此庞大的需求市场，本系统将依托于互联网技术搭建一个O2O（online to offline）模式的二手车交易平台系统，替代原有传统的二手车交易市场。将原有纯线下交易过程革新为线上线下相结合，以满足二手车进行线上公开透明交易，线下进行实体车交易，使得二手车交易变得更加快捷、方便、安全、公正。
+
+项目流程
+用户可进行线上对代卖二手车进行浏览(页面展示)，查看代卖二手车详情(详情页展示)，包括汽车相关信息(汽车图片,描述)等。卖车用户可进行在线注册个人信息(卖家角色,提交表单)以及填写所卖车辆信息(车辆信息.上传汽车图片)，申请卖车用户需等待平台进行信息审核(平台用户)，待审核验证成功(状态)，发布卖车信息。对于有购买意向的买家(买家用户)，买家用户可在平台看到相关卖车信息(查看信息)，如需购买(购买功能),可进行在线注册(提交表单),登记相关个人信息(提交表单),绑定银行卡(银行卡),并进行认证.可以对有意向的汽车进行出价(出价模块),双方达成买卖协议(PDF,打印),线下交付(订单状态).
+
+分析可能出现功能点
+首页展示（汽车表）
+列表页展示（汽车表）
+详情页展示（汽车表）
+买家卖家角色区分?（用户表）
+卖家注册（用户表）
+验证码X
+邮箱验证,手机号验证X
+完善汽车信息（汽车表）
+上传图片*（汽车表）
+更改汽车审核状态（汽车表）
+买家注册（用户表）
+购买出价功能?（出价表）
+(有一人能)银行卡绑定X（银行卡表）
+撮合功能X
+订单功能（订单表）
+登录（用户表）
+生成PDFX
+打印X
+消息功能?（消息表）
+卖车列表（汽车表）
+个人信息展示（用户表）
+个人信息修改（用户表）
+服务保障
+在线咨询X
+轮播图（轮播图表）
+汽车分类（汽车分类表）
+最近浏览？（最近浏览表？）
+
+新车价格数据来源(爬虫)
+
+卖家流程
+用户注册》登录》完善个人信息》完善卖车信息》等待审核》发布卖车信息》确认买家》生成订单
+
+买家流程
+用户注册》登录》完善个人信息》浏览首页》浏览列表页》浏览详情页》出价》等待撮合》生成订单
+
+平台
+审核发布信息，审核订单
+
+
+设计表
+用户表Userinfo
+    用户名username(C)
+    密码password(C)
+    真实姓名realname(C)
+    身份证号iden(C)
+    住址ads(T)
+    手机号uphone(C)
+    性别sex(Ic)
+    角色role(Ic)
+    激活状态isActive(B)
+    是否禁用isBan(B)
+
+品牌表Brand
+    名称title(C)
+    logo logo(IM)
+    新车价格newprice(DE)
+    是否删除isDelete(B)
+
+汽车表Carinfo
+    品牌brand（F）
+    上牌日期regist_data(DA)
+    发动机号engineNo(C)
+    公里数mileage(I)
+    维修记录record(C)
+    期望成交价格price(D)
+    图片picture(IM)
+    手续是否齐全formalities(B)
+    是否有债务debt(B)
+    卖家承诺promise(TEXT)
+    审核状态status(Ic)
+    用户user(F)
+    是否删除isDelete
+
+出价表Cartinfo 
+    价格price(D)
+    买家buser(F)
+    汽车car(F)
+
+银行卡表Bankinfo
+    卡号cardNo(C)
+    用户user(F)
+    交易密码cpwd(C)
+    开户银行bank(Ic)
+    是否删除
+
+订单表Orderinfo
+    用户买家buser(F userinfo)
+    用户卖家suser(F userinfo)
+    汽车car(TEXT)
+    价格price(D)
+    订单号orderNo(C)
+    订单状态status(Ic)
+    时间datetime(DT)
+    是否删除isDelete(B)
+
+**************************************
+json: [{'name':'wanglaoshi','age':37},
+        {'name':'wangwc','age':18},
+        {'name':'wangsuozhang','age':29}]
+
+附属表
+**************************************
+
+消息表Message
+    消息message(C)
+    用户user（F）
+    时间datetime（DT）
+    是否阅读isRead（B）
+
+轮播图表Banner
+    title(C)
+    picture(IM)
+    url(URL)
+    isDelete(B)
+
+*****************************
+表 or cookie or session
+
+*****************************
+
+开发
+新建文件夹
+
+新建django项目
+django-admin startproject XXXXXX
+
+新建app
+python3 manage.py startapp XXXX
+
+建立urls.py
+
+注册app
+
+建立数据库
+CREATE DATABASE usedcar default charset utf8
+
+配置数据库配置settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'usedcar',
+        'USER':'root',
+        'HOST':'localhost',
+        'PORT':3306,
+        'PASSWORD':'123456',
+    }
+}
+
+配置pymysql __init__.py
+import pymysql
+pymysql.install_as_MySQLdb()
+
+配置主url urls.py
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^user/',include('userinfo.urls')),
+    url(r'^buy/',include('buy.urls')),
+    url(r'^sale/',include('sale.urls')),
+    url(r'^pay/',include('pay.urls')),
+    url(r'^front/',include('front.urls')),
+]
+
+
+***********************************
+基于django自带user表扩展
+引入
+from django.contrib.auth.models import AbstractUser
+
+继承表
+class UserInfo(AbstractUser):
+
+添加指定表settings.py
+AUTH_USER_MODEL = 'userinfo.UserInfo'
+
+注册表admin.py
+admin.site.register(UserInfo)
+
+执行M&M
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createsuperuser
+
+***********************************
+"on_delete"
+***********************************

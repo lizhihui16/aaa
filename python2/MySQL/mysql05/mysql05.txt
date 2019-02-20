@@ -1,0 +1,161 @@
+1、事务和事务回滚
+  1、一件事从开始发生到结束的整个过程
+  2、作用 ：确保数据一致性
+  3、事务应用
+  SQL用来默认自动提交数据库执行
+  show variables like 'autocommit'
+    1、开启事务
+      mysql> begin;
+      ## autocommit被禁用,SQL命令不会提交到数据库执行
+    2、终止事务
+      mysql> commit;  |  rollback;
+  4、注意
+    事务和事务回滚只针对表记录操作 ：增、删、改有效,对建库建表无效
+  5、案例
+    1、背景
+      你 ：建行卡
+      朋友 ：工商卡
+      你在建行取款机给你朋友转5000元
+    2、过程
+      表1、CCB
+        create table CCB(
+	name varchar(20),
+	money decimal(20,2)
+	)charset=utf8;
+	insert into CCB values("有钱人",10000);
+      表2、ICBC
+        create table ICBC(
+	name varchar(20),
+	money decimal(20,2)
+	)charset=utf8;
+	insert into ICBC values("没钱",0);
+    3、开始转账
+      mysql> begin;
+      mysql> update CCB set money=money-5000 where name="有钱人";
+      mysql> update ICBC set ;
+      mysql> rollback;
+
+２、与python交互
+  1、交互类型
+    python3 : pymysql  $在线 ：  sudo pip3 install pymysql
+        ##pip3###    sudo apt-get install python3-pip
+         离线：pymysql-0.7.11.tar.gz
+            $ tar -xf pymysql-0.7.11.tar.gz
+            $ cd pymysql0.7.11
+            $python3 setup.py install README
+
+    python2 : MySQLdb  $      sudo pip install mysql-python
+
+  ２、pymysql使用流程
+      1、建立数据库连接对象：db=pymysql.connect(...)
+      2、创建游标对象： cur = db.cursor()
+      3、执行命令：cur.execute("sql命令")
+      4、提交：db.commit()
+      5、关闭游标：cur.close()
+      6、关闭数据库连接: db.close()
+
+示例：zuoye.py
+
+  ３、connect对象
+    1、创建与数据库连接的对象(调用connect()方法)
+      db = pymysql.connect(参数列表)
+      参数列表：
+        1、host ： 主机地址
+        2、port ： 端口3306
+        3、dabatase ： 数据库名
+        4、passwd： 密码
+        5、charset：编码方式,推荐使用utf8
+        6、user ： 用户名
+      示例：
+        conn = pymysql.connect(host="localhost",user="root",passwd="123456",db="db4",charset="utf8")
+    2、连接对象(db)的方法
+        1、db.cursor() 创建游标对象,用于执行sql语句
+        2、db.commit() 提交到数据库执行
+      　３、db.close() 关闭连接
+      　４、db.rollback() 回滚
+    3、游标对象（cur）
+        1.cur.execute("sql命令;")   执行sql命令
+        2.cur.close()              关闭游标对象
+        3.cur.fetchone()　　　　　　 取第一条（查询）
+        4.cur.fetchmany(n)　　　　　　去n条（查询）
+        5.cur.fetchall()           取所有记录（查询）
+      3、常用方法
+        1、execute(SQL命令,[SQL语句补位元素]) 执行SQL命令
+        2、fetchone() 获取结果集第一条记录
+        3、fetchmany(n) 获取n条记录
+        4、fetchall() 获取所有记录    
+    
+
+3、ORM(object Relation Mapping对象关系映射)
+    １、定义
+    　　把对象模型映射到mysql数据库中
+    ２、sqlalchemy 安装
+    　　在线：sudo pip3 install sqlalchemy
+       离线：$ tar -xf sqlalchemy.tar.gz
+            $ cd sqlalchemy
+            $ sudo python3 setup.py install
+    ３、示例：
+        class User(Base):
+            __tablename__="t123"
+            id=Column(Integer,primary_key=True)
+            name=Column(String(20))
+    ４、映射类型
+    　　１、python类(class)<--->数据库中表
+            class User....t123
+        ２、python中类属性<--->数据库中表字段（id ..）
+            id=Column(Integer)
+        ３、关系映射
+            1:1 : 通过主外键关联，添加唯一约束
+            1:n : 通过主外键关联
+            n:n : 通过中间表实现
+    ５、示例
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

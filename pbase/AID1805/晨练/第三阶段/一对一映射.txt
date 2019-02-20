@@ -1,0 +1,20 @@
+一对一映射		
+	语法		
+		属性 = models.OneToOneField(Entry)
+	查询
+		class Wife(models.Model):
+			name = models.CharFiled(...)
+			age = models.IntegerField(...)
+			author = models.OneToOneField(Author)
+		正向查询:通过 wife 找 author
+			# 获取id为1的wife的信息
+			wife = Wife.objects.get(id=1)
+			# 再获取wife所关联的author
+			author = wife.author
+		反向查询:通过 author 找 wife
+			Django 会通过 OneToOneField() 在关联的实体类中增加一个隐式属性,表示对当前实体的引用
+			隐式属性名成为 :当前类名的全小写形式
+			# 先获取id为2的author的信息
+			author=Author.objects.get(id=2)
+			# 再获取author对应的wife
+			wife = author.wife

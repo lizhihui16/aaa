@@ -1,0 +1,18 @@
+
+请写入如下语句：
+
+1. 导入队列   from multiprocessing import Queue
+2. 导入进程   from multiprocessing import Process
+3. 导入匿名管道 from multiprocessing import Pipe
+4. 导入锁  from multiprocessing import Lock
+5. 创建一个队列 p   p = Queue()
+6. 创建一个进程 q   q = Process(target=...,args=(,))
+7. 创建一个管道      (conn1,conn2) = Pipe
+8. 创建一个锁  lock = Lock()
+6. 往队列中放元素的方法   p.put()
+7. 往队列中取元素的方法   p.get()
+8. 在管道中放元素的方法   conn2.send()
+9. 在管道中取元素的方法   conn1.recv()
+10. 加锁的方法  lock.require()
+11. 解锁的方法  lock.release()
+12. 加锁的原则  注意锁的粒度，尽量最小化，代价最小

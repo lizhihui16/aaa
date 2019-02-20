@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1" width="800px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>邮箱</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for foo in authors %}
+                <tr>
+                <td>{{ foo.id }}</td>
+                    <td>{{ foo.name }}</td>
+                    <td>{{ foo.age }}</td>
+                    <td>{{ foo.email }}</td>
+                    <td><a href="/02-all/{{ foo.id }}">删除</a><a href="#">修改</a></td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</body>
+</html>

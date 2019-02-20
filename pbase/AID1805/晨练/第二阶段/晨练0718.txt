@@ -1,0 +1,18 @@
+线程的Event事件
+操作：
+  e = threading.Event()
+  e.wait([timeout])  如果e为设置状态则不阻塞，未设置则阻塞
+  e.set()  将e变为设置状态
+  e.clear()  将e设置去除
+线程锁
+  lock = threading.Lock()   创建锁
+  lock.acquire()   上锁
+  lock.release()   解锁
+  操作原理 ： 重复上锁 acquire()会阻塞
+
+进程线程的特征
+进程线程区别和关系？
+同步互斥的意义，用过什么方法，什么情况下用？
+进程间通信方式都知道哪些，有什么特点？
+僵尸进程怎么处理
+什么是GIL，怎么处理

@@ -1,0 +1,29 @@
+/* 统一设置页面样式 */
+body{
+	/*字体样式*/
+	font : 12px "Microsoft Yahei","黑体",sans-serif;
+	color : #9a9a9a;
+}
+body,.c1,.c2{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#d1{
+		height: 30px;
+
+}
+.c1{
+	float:left;
+	background: #eee;
+	line-height : 30px;
+	display:inline-block;
+	border:6px solid transparent;
+	border-top: 6px solid black;
+	position: relative;
+	top: 4px;
+
+}
+.c2{
+	float:right;
+}

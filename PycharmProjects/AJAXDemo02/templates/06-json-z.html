@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script>
+        $(function () {
+            $('#btn').click(function () {
+                var xhr=createXhr();
+                xhr.open('get','/06-json-server',true);
+                xhr.onreadystatechange=function () {
+                    if(xhr.readyState==4&&xhr.status==200){
+                        var html1='';
+                        var ob=JSON.parse(xhr.responseText);
+                        console.log(1);
+                        $.each(ob,function (i,obj) {
+                            html1+="<tr>";
+                            html1+="<td>"+obj.lpwd+"</td>";
+                            html1+="<td>"+obj.lname+"</td>";
+                            html1+="<td>"+obj.uname+"</td>";
+                            html1+="</tr>";
+                        })
+
+                        console.log(html1);
+                        $("#d1").html(html1);
+                    }
+                }
+                xhr.send();
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btn">显示</button>
+    <table width="400" border="1">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>账号</th>
+                <th>昵称</th>
+            </tr>
+        </thead>
+        <tbody id="d1">
+
+        </tbody>
+    </table>
+</body>
+</html>

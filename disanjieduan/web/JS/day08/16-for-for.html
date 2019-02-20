@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+//
+//	for(var i=1;i<10;i++){
+//		var s;
+//		var h=' ';
+//		for(var j=1;j<=i;j++){
+//		s=i*j;
+//		h+=' '+i+'*'+j+'='+s;
+//		}
+//		console.log(h);
+//	}
+// //---------------------------------------------------------------------
+//var n=Number(prompt('请输入数据'));
+//var m=2
+//for(m;m<n;m++){
+//	if(n%m==0 && m!=n){break};
+//}
+//if(m==n){console.log(n);}
+
+		
+//-----------------------------------------------------------------
+
+	var a=Number(prompt('年'));
+	var b=Number(prompt('月'));
+	var c=Number(prompt('日'));
+	var sum=0;
+	var isRun =  a%4==0&&a%100!=0||a%400==0;
+
+	for(var i=1990;i<a;i++){
+		sum+=365;
+		if(i%4==0&&i%100!=0||i%400==0){
+			sum+=1;
+		}
+	}
+	for(var j=1;j<b;j++){
+		while(j<b){//i取1~b-1
+		switch(j){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+				sum+=31;
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				sum+=30;
+				break;
+			case 2:
+				sum+=28;
+				if(isRun)
+				sum+=1;
+				break;
+		}
+	   }
+	}
+	sum+=c;
+	//正月累加 最多取到11个正月
+	for(a;a>1990;a--){
+	for(var n=a-1990;n>0;n--){
+		var isRun =  a%4==0&&a%100!=0||a%400==0;
+		while(j<13){//i取1~b-1
+		switch(j){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				sum+=31;
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+			
+				sum+=30;
+				break;
+			case 2:
+				sum+=28;
+				if(isRun)
+				sum+=1;
+				break;
+				};
+			}
+	}
+	}
+	if(sum%7==0){console.log(7);}
+	else if(sum%7==1){console.log(1);}
+  	else if(sum%7==2){console.log(2);}
+	else if(sum%7==3){console.log(3);}
+	else if(sum%7==4){console.log(4);}
+	else if(sum%7==5){console.log(5);}
+	else if(sum%7==6){console.log(6);}
+
+  </script>
+ </body>
+</html>

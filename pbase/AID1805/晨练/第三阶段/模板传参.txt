@@ -1,0 +1,16 @@
+django模板的加载和传递数据的方式
+1.使用 loader 加载模板
+	dic = {
+		'变量1':'值1',
+		'变量2':'值2',
+		... ...
+	}
+	t=loader.get_template('模板名称')
+	# 渲染成字符串时需要传递变量字典到模板中
+    return HttpResponse(t.render(dic))
+2.使用render加载并返回模板
+	dic = {
+		'变量1':'值1',
+		'变量2':'值2',
+	}
+	return render(request,'模板名称',dic)

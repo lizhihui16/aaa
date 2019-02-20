@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        $(function () {
+            $('#btnShow').click(function () {
+                var xhr=createXhr();
+                xhr.open('get','/00-server',true);
+                xhr.onreadystatechange=function () {
+                    if(xhr.readyState==4&&xhr.status==200){
+                        var arr=JSON.parse(xhr.responseText);
+                        console.log(arr);
+                        var html1="";
+                        $.each(arr,function (i,obj) {
+                            html1+="<tr>";
+                            html1+="<td>"+obj.id+"</td>";
+                            html1+="<td>"+obj.lname+"</td>";
+                            html1+="<td>"+obj.lpwd+"</td>";
+                            html1+="<td>"+obj.uname+"</td>";
+                            html1+="</tr>";
+                        });
+                        $("#content").html(html1);
+                    }
+                }
+                xhr.send(null);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btnShow">显示所有</button>
+    <table width="400" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>lname</th>
+                <th>lpwd</th>
+                <th>uname</th>
+            </tr>
+        </thead>
+        <tbody id="content"></tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,19 @@
+1. 创建一个信号量s，并把信号量的值设置为3  # s = multiprocessing.Semaphore(3)
+2. (1).创建一个事件e  # e = multiprocessing.Event()
+   (2).创建两个进程w1和w2，要求w1是非阻塞的，w2是阻塞的(不用写具体功能，理解意思即可)
+        def wait_for_event(e):
+            e.wait() 
+        def wait_for_event_timeout(e, t):
+            e.wait(t)
+        if __name__ == '__main__':
+        #创建event对象
+        e = multiprocessing.Event()
+        # 创建两个进程,一个等待阻塞的event,另一个等待超时的event
+        w1 = multiprocessing.Process(target=wait_for_event, 
+            name="wait_for_event", args=(e,))
+        w2 = multiprocessing.Process(target=wait_for_event_timeout, 
+            name="wait_for_event_timeout", args=(e,2))        
+    (3).设置事件发信号的方法  # e.set()
+3. 建立一个共享内存数组a，大小为10000，请写出语句   # a = multiprocessing.Array('i',10000)
+4. (1).创建一个进程池p，进程池中最大进程数为8，写出语句  # p = Pool(processes=4)
+   (2).向进程池中添加任务(要求异步)  # p.apply_async(fun,args=(2,))

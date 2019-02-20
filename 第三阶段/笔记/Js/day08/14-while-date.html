@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<script>
+		var year = Number(prompt("请输入年"));
+		var month = Number(prompt("请输入月"));
+		var day = Number(prompt("请输入日"));
+		//总天数
+		var sum = 0;
+		//判断闰年
+		var isRun = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+		//整月累加 最多取到11个整月
+		//1 3 5 7 8 10 月份31天
+		//4 6 9 11 月份 30天
+		//2 28/29天
+		var i = 1;
+		//通过循环控制当前月之前所有整月天数累加
+		while(i < month){ //i 取 1 ~ month-1
+			switch(i){
+				case 1 :
+				case 3 :
+				case 5 :
+				case 7 :
+				case 8 :
+				case 10:
+					sum += 31;
+					break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					sum += 30;
+					break;
+				case 2:
+					sum += 28;
+					if(isRun)
+					sum += 1;
+					break;			
+			}
+			i ++;
+		}
+		//当前月的天数 day
+		sum += day;
+		console.log(year + "年" + month +"月"+day+"日是当年的第" + sum + "天");
+	</script>
+ </body>
+</html>

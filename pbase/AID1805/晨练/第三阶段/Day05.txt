@@ -1,0 +1,27 @@
+4.转发 & 重定向
+	1.转发
+		将请求转交给其他的视图去处理
+		表现:地址栏不会发生改变
+		原因:只有一次请求,所以地址栏上就是最初请求的地址
+	2.重定向
+		重新向新的地址发送请求
+		语法:
+			HttpResponseRedirect('重定向地址'')
+			redirect('重定向地址')
+		表现:地址栏会现实最后一次请求的地址
+		原因:重定向导致浏览器向服务器发送了两次请求
+5.F查询 和 Q查询
+	1.F()
+		作用:用于在执行中获取某列的值
+		语法:
+			from django.db.models import F
+			F('列名')
+
+			Author.objects.all().update(age=F('age')+10)
+	2.Q()
+		作用:在查询条件中完成或(or)的操作
+		语法:
+			from django.db.models import Q
+			Q(条件1)|Q(条件2)
+		#查询id为1 或 年龄大于100岁的人的信息
+		Author.objects.filter(Q(id=1)|Q(age__gt=100))

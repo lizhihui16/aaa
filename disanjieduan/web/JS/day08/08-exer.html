@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+  var a=Number(prompt('年'));
+  var b=Number(prompt('月'));
+  var c=Number(prompt('日'));
+//  if(a%4==0&&a%100!=0||a%400==0){
+//	var n=b>2?console.log('当天是'+a+'年的第',(b-2)*30+29+c,'天'):b==2?
+//	console.log('当天是'+a+'年的第',30+c,'天'):console.log('当天是'+a+'年的第',c,'天');
+//  }
+//  else{	var n=b>2?console.log('当天是'+a+'年的第',(b-2)*30+28+c,'天'):b==2?
+//	console.log('当天是'+a+'年的第',30+c,'天'):console.log('当天是'+a+'年的第',c,'天');}
+  
+	var sum = 0;
+//	判断闰年
+	var isRun =  a%4==0&&a%100!=0||a%400==0;
+	if(b==1){sum+=c;}
+	else if(b==2){sum+=31+c;}
+	else if(c==3){sum+=31+28+c;}
+//	...
+	if(isRun&&b>2){sum+=1;}
+	console.log('当天是'+a+'年的第'+sum+'天');
+  
+  
+  </script>
+ </body>
+</html>

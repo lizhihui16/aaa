@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function createXhr() {
+            var xhr=null;
+            if(window.XMLHttpRequest){
+                xhr=new XMLHttpRequest();
+            }else{
+                xhr=new ActiveXObject('Microsoft.XMLHTTP');
+
+            }
+            return xhr;
+        }
+
+        function btnAjax(){
+            //1.创建xhr
+            var xhr = createXhr();
+            //2.创建请求
+//            xhr.open('get','/server',true);
+            xhr.open('get','/server?uname=wangwc',true);
+
+            //3.设置回调函数
+	    window.onload = function (){
+		//窗口加载完毕后执行
+		var form = $('form');
+		//文本框
+		var input = $('input');
+		//span
+		var span = $('span');
+		input.onfocus = function (){
+			console.log("获取焦点");
+		};
+		input.onblur = function (){
+			console.log("失去焦点",this.value);
+			//验证用户输入是否合法
+			if(this.value.length >= 6 && this.value.length <= 18){
+				span.innerHTML = "用户名合法";
+				this.style.border = "2px solid grey";
+			}else{
+				span.innerHTML = "请重新输入";
+				this.style.border = "2px solid red";
+			}
+		};
+            //4.发送请求
+            xhr.send(null);
+        }
+
+
+    </script>
+
+	<form action="" method="">
+		<p>
+			用户名 :
+			<input type="text" name="uname" placeholder="" maxlength="">
+		</p>
+
+	</form>
+</body>
+</html>

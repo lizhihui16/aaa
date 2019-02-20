@@ -1,0 +1,2 @@
+目标：在浏览器输入www.rabbit.com 回车
+    进入到Django项目主页

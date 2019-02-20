@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script>
+	function createCode(len){
+		var arr=[0,1,2,3,4,5,6,7,8,9,'a','d','e','f','g','s','h','j','k','l','t','y','u','i','z','w','A','S','x','e'];
+		var show='';
+		for(var i=0;i<len;i++){
+			var index=parseInt(Math.random()*arr.length);
+			show+=arr[index];
+		}
+		return show;
+	}
+	function validate(){
+		var code=createCode(4);
+		var input=prompt('请输入验证码'+code);
+		if(input.toUpperCase()==code.toUpperCase()){alert('输入正确');}
+		else{alert('输入有误');}
+	}
+
+	</script>
+ </head>
+ <body>
+<!--   <button onclick='validate()'>获取验证码</button> -->
+  <script>
+//  var arr=[0,1,2,3,4,5,6,7,8,9,'a','d','e','f','g','s','h','j','k','l','t','y','u','i','z','w'];
+//  var arr1=[];
+//  for(var i=0;i<4;i++){
+//	  var a=Math.random();
+//	  a=a*arr.length;
+//	  a=a.toFixed(0)
+//	  arr1.push(arr[a]);
+//  }
+//  console.log(arr1);
+//  var str=prompt('');
+//  str=str.toLowerCase()
+//  for(var j=0;j<5;j++){
+//	  if(str[j]==arr1[j]){console.log('输入正确')}
+//	  else{console.log('输入错误')};
+//  }
+//  
+  </script>
+ </body>
+</html>

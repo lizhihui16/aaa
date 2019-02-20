@@ -1,0 +1,25 @@
+.movie-img{
+    width:120px;
+    height:170px;
+    margin-bottom: 10px;
+}
+
+.movie-title{
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.movie-container{
+    /* 把当前的元素，变成一个弹性盒子 */
+    display: flex;
+    flex-direction: column;
+    margin: 0 12px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    /* 换行 */
+    flex-flow: wrap;
+}
+

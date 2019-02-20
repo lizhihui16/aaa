@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<script>
+		for(var i = 1;i < 101;i ++){
+			//console.log(i);
+		}
+
+		//1. 跑十圈
+		for(var j = 1;j < 11;j ++){
+			if(j == 5){
+				//break结束循环,后面代码都不执行
+				//continue表示跳出本次循环,开始下一次循环
+				continue;
+			}
+			console.log("第"+j+"圈");
+		}
+
+		for(var k = 1;;k ++){
+			//省略循环条件
+			if(k == 10){
+				break;
+			}
+			console.log(k);
+		}
+
+		//星星图案
+		//外层循环,确定行数
+		for(var row = 1; row <= 5; row ++){
+			//变量保存最终的星星字符串
+			var show = "";
+			//内层循环控制星星个数
+			for(var s = 1; s <= row;s ++){
+				show += "*";
+			}
+			//控制台输出会自动换行,字符串拼好之后执行输出
+			console.log(show);
+		}
+
+
+	</script>
+ </body>
+</html>

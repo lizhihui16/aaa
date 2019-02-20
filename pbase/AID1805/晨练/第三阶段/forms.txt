@@ -1,0 +1,9 @@
+在视图中,通过forms.Form自动获取表单数据
+	1.通过 forms.Form 的构造,接收post数据
+		form = XXXForm(request.POST)
+	2.需要让 form 通过验证后,再取值
+		form.is_valid()
+			返回True:提交的数据已经通过验证,允许接收表单提交的数据
+			返回False:提交的数据验证未通过,无法取值
+	3.获取表单中的数据
+		通过 form.cleaned_data (字典) 接收提交的数据

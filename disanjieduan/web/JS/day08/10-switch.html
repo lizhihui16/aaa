@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+ <script>
+	var a=Number(prompt('年'));
+	var b=Number(prompt('月'));
+	var c=Number(prompt('日'));
+	var sum=0;
+	var isRun =  a%4==0&&a%100!=0||a%400==0;
+	switch(b){
+		case 12:
+			sum+=30;
+		case 11:
+			sum+=31;
+		case 10:
+			sum+=30;
+		case 9:
+			sum+=31;
+		case 8:
+			sum+=31;
+		case 7:
+			sum+=30;
+		case 6:
+			sum+=31;
+		case 5:
+			sum+=30;
+		case 4:
+			sum+=31;
+		case 3:
+			sum+=28;
+			if(isRun){sum+=1;}
+		case 2:
+			sum+=31;
+		case 1:
+			sum+=c;
+			break;
+	}
+//	if(isRun && b>2){sum+=1};
+	console.log(sum);
+  </script>
+ </body>
+</html>

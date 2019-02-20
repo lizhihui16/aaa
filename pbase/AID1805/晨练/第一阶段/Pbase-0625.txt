@@ -1,0 +1,17 @@
+练习1：
+现有一个列表alist= ['hello','world']，写一个程序要求实现如下输出：  
+index 0：hello
+index 1：world
+
+练习2：
+写一个程序，要求实现如下功能：
+(1). 创建一个文件student_info.txt
+(2). 在文件中写入如下两行内容：
+	name:Bob  age:30  score: 90
+	name:Lucy age:25  score: 99
+
+练习3：
+写一个生成器函数myyield()，将练习2中student_info.txt中的两行内容生成一个生成器
+然后用for语句打印这两行内容：
+for x in myyield():
+	print(x)

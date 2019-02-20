@@ -1,0 +1,26 @@
+1.什么是AJAX,优点是什么,一般使用在哪些场合
+2.使用AJAX发送post请求
+	1.步骤
+		1.创建 / 获取 xhr
+		2.创建请求 - open()
+		3.设置回调函数 - onreadystatechange
+		4.发送请求 - send()
+			xhr.send("uname=sf.zh&upwd=123456");
+	2.csrf 验证
+		必须手动提交 csrfmiddlewaretoken 的值到服务器
+		否则无法通过csrf的验证,服务器会返回403
+		解决方案1:
+			1.在模板中,通过JS获取cookies中csrftoken的值
+			2.将获取出来的值,拼成参数,再发送给服务器
+		解决方案2:
+			保留...
+	3.必须设置一个请求消息头 - Content-Type
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		注意:该操作,要在 xhr.send() 之前增加
+
+
+
+
+
+
+

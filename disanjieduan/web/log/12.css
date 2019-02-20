@@ -1,0 +1,41 @@
+
+
+div,li,ol,ul,a,{
+	margin:0;
+	padding:0;
+}
+
+
+#d1{
+	height:30px;
+	background:#eee;
+	line-height : 30px;
+}
+
+.c1{
+	float:left;
+	list-style-type:none;
+	text-align:center;
+}
+.c1>li{
+	float:left;
+	padding:10px;
+}
+.c2{
+	line-height:30px;
+	float:right;
+	list-style-type:none;
+	text-align:center;
+	}
+
+#d1>.c2>li{
+	float:left;
+	padding:0 5px;
+}
+.c2>li>b{
+/*	border-left: 1px solid #9a9a9a;*/
+	margin-right: 10px;
+}
+.c3{
+	list-style-type:none;
+}

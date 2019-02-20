@@ -1,0 +1,56 @@
+
+　　1.开启MySQL远程连接
+　　    1.获取root权限
+　　        sudo -i
+　　    2.cd到配置文件所在路径
+　　        cd /etc/mysql/mysql.conf.d/
+　　    3.subl mysqld.cnf
+　　        bind-address=127.0.0.1  把此语句用#注释掉
+　　    4.重启mysql服务
+　　        /etc/init.d/mysql restart
+　　
+　　tarena@tedu:~$ sudo -i
+　　[sudo] tarena 的密码： 
+　　root@tedu:~# cd /etc/mysql/mysql.conf.d/
+　　root@tedu:/etc/mysql/mysql.conf.d# vi mysqld.cnf
+　　root@tedu:/etc/mysql/mysql.conf.d# /etc/init.d/mysql restart
+　　[ ok ] Restarting mysql (via systemctl): mysql.service.
+　　root@tedu:/etc/mysql/mysql.conf.d# exit
+　　注销
+
+　　2.添加授权用户
+　　    1.使用root用户连接到服务器
+　　         mysql –uroot –p123456
+　　    2.添加新的授权用户
+　　        create user "用户名"@"IP地址" identified by "密码";
+　　        例如：mysql> create user "tiger"@"%"identified by "123456";
+			注意空格和非空格
+　　        IP地址的表示方式：
+　　            1.%表示用户可以从任何地址连接到服务器
+　　　　　　　　2.localhost用户只能从本地连接
+　　　　　　　　3.指定一个IP表示用户只能从此IP连接到服务器
+　　3.给用户授权
+        grant 权限列表 on 库.表 to “用户名”@”IP地址” with grant option; 
+                                    (with grant option 表示给用户权限)
+        例如： grant all privileges on *.* to "tiger"@"%" with grant option;  
+               						(privileges权限)
+        权限列表：
+　　		delete/ select /update/ insert/ alter/ drop/ create …
+　　		*.*    表示所有库的所有表（最高权限）
+　　		库.*   表示此库的所有表
+
+           ##写入到mysql库下的user表，user、host两个字段
+           注：在Linux命令行按 ifconfig查看IP地址
+           查看权限mysql> select user,host from mysql.user;
+
+　　练习：
+　　添加一个授权用户，monkey，所有人都可以连接，只对db1库有权限查询
+　　         1.添加授权用户monkey
+　　          create user "monkey"@"%" identified by "123456";
+　　         2.给monkey用户权限
+　　          grant select privileges on *.* to "monkey"@"%" with grant option;
+　　         3.验证：mysql –hIP地址 –umonkey -p  在Linux命令行输入 
+　　
+　　4.删除授权用户
+            drop user “用户名”@”IP地址”;
+            例如：drop user "tiger"@"%";

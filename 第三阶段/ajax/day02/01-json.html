@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script></script>
+</head>
+<body>
+    <script>
+    // //声明一个JS对象，用来表示王老师的信息
+    // var obj={
+    //     "name":"王老师",
+    //     "age":30,
+    //     "gender":"男"
+    // }
+
+    // var bj={
+    //     "wname":"王夫人",
+    //     "wage":"40",
+    //     "wgender":"女",
+    //     "wai":"唱歌"
+
+    // }
+    // console.log(obj.name);
+    // console.log(obj.age);
+    // console.log(obj.gender);
+    // console.log(bj.wname);
+    // console.log(bj.wage);
+    // console.log(bj.wgender);
+    // console.log(bj.wai);
+
+
+    
+    </script>
+
+    <script src="jquery-1.11.3.js"></script>
+
+    <script>
+    var arr = [
+            {
+                "name":"王老师",
+                "age":37,
+                "gender":"男"
+            },
+            {
+                "name":"王夫人",
+                "age":15,
+                "gender":"男"
+            },
+            {
+                "name":"王小超",
+                "age":17,
+                "gender":"男"
+            },
+        ];
+    //使用jq中的$arr.each()循环遍历arr数组
+    $(arr).each(function(i,obj){
+        console.log("第"+(i+1)+"个元素：");
+        console.log("姓名:"+obj.name);
+        console.log("年龄:"+obj.age);
+        console.log("性别："+obj.gender);
+    });
+    
+//         for(var i=0;i<arr.length;i++){
+//             var obj=arr[i];
+//             console.log(obj.name);
+//             console.log(obj.age);
+//             console.log(obj.gender);
+    </script>
+</body>
+</html>

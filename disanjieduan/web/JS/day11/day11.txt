@@ -1,0 +1,213 @@
+1. 定时器方法
+				作用 ：按照指定的周期或者时间间隔，来调用函数或者
+							计算表达式
+				1. 周期性定时器 / 间歇调用
+						1. 特点 ：每隔一段时间就执行一遍代码
+						2. 语法 ：
+								var timer = setInterval(fun,duration);
+								window.setInterval();
+								参数 ：
+									fun : 表示要执行的操作，可以是函数，
+									也可以直接使用匿名函数
+									duration ：时间间隔，
+															隔多少时间执行一次代码
+															单位是 ms （毫秒）
+								返回值 ：
+									timer : 表示当前定时器的ID ，
+												  就是一个整数，
+													可以区分不同的定时器，
+													清除定时器时使用
+						3. 清除定时器
+								clearInterval(timer);
+								参数 ：定时器的ID
+						练习 :
+							1. 创建按钮 开始和结束
+							2. 点击开始时，开启定时器，每隔一秒在
+									控制台输出当前的系统时间
+							3. 点击结束时，停止打印.
+				2. 一次性定时器 / 超时调用
+						1. 特点 ：在指定的时间间隔之后，执行一次操作
+						2. 语法 ：
+								var timer = setTimeout(fun,delay);
+								参数 ：
+									fun : 要执行的操作
+									delay : 时间间隔，隔多久再执行相应操作
+								返回值 :
+									timer ：定时器ID，在清除定时器时使用
+						3. 清除定时器 ：
+								clearTimeout(timer);
+						练习 ：
+							1. 网页中创建一个按钮
+							2. 点击按钮时，弹出确认框，
+									询问用户是否需要关闭网页
+									如果点击确定，就在5秒之后关闭网页
+									window.close();
+		4. window中的属性
+				window中的属性，本身又是一个对象
+				1. screen对象
+						访问屏幕对象 ：console.log(screen);
+													  console.log(window.screen);
+						作用 ：获取客户端显示器相关的信息
+						属性 ：
+							1. width /height 获取屏幕的宽高
+							2. availWidth /availHeight 
+								获取屏幕实际可用的宽高（减去任务栏之后的值）
+				2. history 对象
+						作用 ： 包含当前窗口访问过的所有URL
+						属性&方法 ：
+							1. length 属性 ：获取当前窗口访问过的url
+							的数量
+							2. 方法 ：
+								1. back() 后退
+								2. forward() 前进
+								3. go(num) 跳转几步
+										num 取值为整数，可正可负
+										在当前网页的基础上前进/后退几步
+				3. location 对象
+					作用 ：location 保存的是浏览器地址栏的信息
+					属性 ：
+							href : 获取当前窗口正在浏览的网页url
+							如果给href属性赋值，就相当于页面跳转
+					方法 ：
+							reload() 重载，相当于刷新
+							reload(true) : 忽略缓存，从服务器端加载
+							reload(false) : 从缓存中加载（默认）
+					练习 ：
+						创建按钮，点击时跳转 http://www.tmooc.cn
+				4. navigator 对象
+						作用 ：保存浏览器相关的信息
+						属性 ：
+								userAgent ：显示信息
+3. DOM (ducument对象)
+		1. 介绍 ：
+			document对象，是DOM中的顶层对象，封装了所有的HTML元素
+			相关的属性，方法以及事件
+		2. 节点（对象）
+			网页在加载过程中，会自动生成一颗节点树（DOM树），
+			DOM树会封装网页上所有的内容。网页中的每一个元素，
+			每一段文本，甚至注释，都会被封装成DOM树中单独的
+			一个节点
+			1. 节点分类 
+				1. 元素节点 - 网页中的一个元素（标签）
+				2. 属性节点 - 标签中的一个标签属性
+				3. 文本节点 - 表示标签中的文本内容
+				-------------------------------
+				4. 注释节点 - 网页中的注释
+				5. 文档节点 - 表示整个文档
+			2. 节点操作
+				1. 获取节点
+				2. 读取节点
+				3. 修改节点
+				4. 删除节点
+				5. 创建节点
+		3. 获取元素节点
+				1. document.getElementsByTagName('a');
+						通过制定的标签名获取元素节点，返回
+						节点列表（数组），可以根据下标获取具体的
+						元素节点对象
+				2. document.getElementsByClassName('');
+						根据元素class属性值查找，返回节点列表
+				3. document.getElementsByName('');
+						根据元素name属性值查找，返回节点列表
+						一般用于查找表单元素
+				4. document.getElementById('');
+						根据元素id属性值查找，返回具体的元素节点对象
+				注意 ：
+					脚本标签的书写位置，要放在body之后
+				DOM 属性：
+					1. innerHTML : 
+							修改/获取元素节点中的HTML文本，可识别标签
+					2. innerText :
+							修改/获取元素节点中的普通文本，不能识别标签
+					3. value :
+							该属性只针对表单控件，允许获取或修改表单
+							控件的值
+					作业 ：
+						1. 创建网页，添加div,文本框，按钮
+						2. 点击按钮时，实现将文本框输入的内容以
+						一级标题的形式显示在div中
+								
+1. 获取或设置属性节点的值
+		操作标签属性
+		1. getAttribute('attrName')
+				作用 ： 获取指定属性的值
+				attrName : 属性名
+		2. setAttribute('attrName','value')
+				作用 ：设置属性和对应的值
+				attrName : 属性名
+				value ：属性值
+		3. removeAttribute('attrName')
+				作用 ：移除指定属性
+				attrName : 属性名
+		4. 可以使用点语法访问元素节点的属性
+				元素节点.属性名
+				et :
+					h1.id
+					input.value
+                    elem.className
+			练习 ：
+				1. 创建超链接，链接地址为百度
+				2. 创建按钮，点击时修改超链接的链接地址
+						改为 http://www.tmooc.cn
+2. 操作元素样式
+	1. setAttribute()
+			可以设置元素 class / id 的属性值，对应选择器
+	2. 针对类选择器的样式，可以为元素属性className赋值
+		  元素.className = "";
+	3. 使用内联方式添加样式
+			<h1 style="color:red;"></h1>
+			元素.style.css属性名
+			元素.style.css属性名 = "";
+			注意 ：
+				如果CSS属性名中有连接符 - ，在JS中访问时一律
+				改成驼峰标识：
+					font-size 在JS中 使用 fontSize
+					background-color  backgroundColor
+			练习 ：
+				1. 创建div 按钮 输入框
+				2. 验证输入用户名是否在6 - 18 位之间，
+					在6-18位之间的视为通过，在div中显示绿色的
+					文本"用户名合法"
+					如果不合法，div中显示红色文本“用户名不合法”
+3. 读取节点信息
+		1. 节点类型
+				属性 ：nodeType
+				值   ：
+								1   表示元素节点
+								2		表示属性节点
+								3   表示文本节点
+								8		表示注释节点
+								9		表示文档节点
+		2. 获取节点名称
+				属性 ：nodeName
+				取值情况 ：
+						元素节点                        返回标签名 
+                        属性节点                             属性名
+						文本节点						返回 #text
+						注释节点						返回 #comment
+						文档节点						返回 #document
+4. 节点对象的层次属性
+		1. parentNode
+				表示获取当前节点的父节点
+		2. childNodes
+				表示获取当前节点下所有的子节点，返回子节点数组
+				注意 ：文本节点和属性节点都会作为当前元素节点的
+				子节点, 换行和空格都会作为空的文本节点计算在内
+		3. children
+				返回当前节点的所有子节点数组
+				注意 ：只返回子元素节点，不包含文本节点和属性节点
+		4. nextSibling
+				表示下一个兄弟节点
+				et :
+					<h1></h1>
+					文本
+					<div></div>
+				注意 ：nextElementSibling
+								表示下一个元素兄弟节点
+		5. previousSibling
+				表示上一个兄弟节点
+				注意 ：previousElementSibling
+								表示上一个元素兄弟节点
+		6. attributes
+				获取当前元素节点对象的所有属性节点集合
+				<input type="" value="" maxlength="">

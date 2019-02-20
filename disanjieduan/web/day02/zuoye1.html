@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+
+  <form action="1.txt" method="post">
+   <table>
+	<tr>
+		<td colspan = "3"><h1>增加管理员</h1></td>
+	</tr>
+	<tr>
+		<td>姓名：</td>
+		<td><input type="text" name="username" maxlength=10></td> 
+		<td>10个字符以内</td>
+	</tr>
+	<tr>
+		<td>密码：</td>
+		<td><input type="password" name="pass" maxlength="10"> </td>
+		<td>10个字符以内</td>
+	</tr>
+	<tr>
+		<td>性别：</td>
+		
+		<td><input type="radio" name="hh" value="cka" id="ck"><label for="ck">女士</label>
+		<input type="radio" name="hh" value="male" id="ma"><label for="ma">男士</label></td>
+		<td></td>
+	</tr>
+	<tr>
+	
+		<td rowspan = "2" >角色：</td>			
+		<td><input type="checkbox" name="admin" value="adm">超级管理员</td>
+		<td rowspan = "2">至少选则一个角色</td>
+	</tr>
+
+	<tr>
+		<td valign="middle"><input type="checkbox" name="admin" value="admi">账单管理员</td>
+	</tr>
+
+	<tr>
+		<td>头像：</td>
+		<td><input type="file" name=""></td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td valign="center"><input type="submit" value="保存">
+		<input type="reset" value="重填"></td>
+	</tr>
+  
+   <table>
+  </form>
+ </body>
+</html>
