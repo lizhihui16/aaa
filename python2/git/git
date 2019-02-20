@@ -157,9 +157,12 @@ git的基本操作命令
             应用上一个工作区，并删除之
             git stash pop
 
+
         删除工作区
             git stash drop stash@{0}  删除某一个
             git stash clear   删除所有
+
+
 
 作业：１、申请一个github账号
         github.com 
